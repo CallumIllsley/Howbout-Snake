@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snake</title>
+    <script src="snake.js"></script>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+
+    <div id="help">
+        <h1>Howbout... a Game of Snake?</h1>
+        <p>Try your a hand at a reimagined classic and see if you can top the leaderboard! Collect food <span
+                class="food-block"></span> to increase your score
+            and avoid colliding with walls <span class="wall-block"></span>, the edge of the board or your own tail!</p>
+        <h3>Controls</h3>
+        <h4>Movement</h4>
+        <div id="controlsWrapper">
+            <div class="keyboard-container">
+                <kbd><span>W</span></kbd>
+                <kbd><span>A</span></kbd>
+                <kbd><span>S</span></kbd>
+                <kbd><span>D</span></kbd>
+            </div>
+            <div class="keyboard-container">
+                <kbd><span>⇧</span></kbd>
+                <kbd><span>⇦</span></kbd>
+                <kbd><span>⇩</span></kbd>
+                <kbd><span>⇨</span></kbd>
+            </div>
+            <h4>Power Up!</h4>
+            <div class="keyboard-container">
+                <kbd class="wide"><span>Space</span></kbd>
+            </div>
+        </div>
+        <h3>Powerups</h3>
+        <h4>❄️ Freeze Mode ❄️ - Slows down the snake by a random percentage for 10 seconds</h4>
+        <h4>🍎 Food Fight 🍎 - Spawns a random number of apples on the board</h4>
+        <h4>✂️ Trim ✂️ - Trims the snake by a random amount, making the snake shorter</h4>
+        <h4>🔨 Demolish 🔨 - Removes a random number of walls from the game board</h4>
+        <div>
+            <button onclick="game.play()">Lets Play!</button>
+        </div>
+    </div>
+
+    <div id="controls">
+        <div>
+            <button class="play-button" onclick="game.play()">Play</button>
+            <button class="restart-button" onclick="game.restart()">Restart</button>
+            <button class="pause-button" onclick="game.snake.pause()">Pause</button>
+            <button class="resume-button" onclick="game.snake.move()">Resume</button>
+        </div>
+        <button onclick='game.displayLeaderboard()' class="small">🏆</button>
+        <h2>Score: <span class="score">0</span></h2>
+    </div>
+
+    <div id="powerupBar">
+        <h2 id="powerupHeading">Powerup Charging...</h2>
+        <div id="powerupSegments">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="board">
+        <div id="gameOver">
+            <h1>Game Over!</h1>
+            <p>Submit your score to the leaderboard and then play again for another crack at a high score!</p>
+            <div>
+                <form id="leaderboardForm">
+                    <table>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="player" placeholder="Enter Name"></td>
+                            <td id="playerScore">0</td>
+                        </tr>
+                    </table>
+                    <button type="submit">Submit Score</button>
+                </form>
+            </div>
+        </div>
+        <div id="leaderboard">
+            <h1>Leaderboard</h1>
+            <p>Where do you rank on the list? Play again and see if you can beat the high score!</p>
+            <div>
+                <div id="leaderboardWrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                </div>
+                </table>
+            </div>
+            <button onclick="game.restart()">Restart Game</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const board = document.getElementById('board');
+        const controls = document.getElementById('controls');
+        const leaderboardForm = document.getElementById('leaderboardForm');
+        const game = new SnakeGame(board, controls, leaderboardForm);
+    </script>
+
+</body>
+
+</html>

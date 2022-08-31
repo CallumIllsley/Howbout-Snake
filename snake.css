@@ -1,0 +1,488 @@
+html, body {
+    margin: 0;
+    background-color: #121212;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    background-color: #c38fff;
+    border-radius: 7.5px;
+    color: #1f1f1f;
+    font-weight: bold;
+    border: 0px;
+    -webkit-box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    color: #c38fff;
+    margin-bottom: 10px;
+    height: 50px;
+    margin-top: -100px;
+}
+
+h3 {
+    width: 100%;
+    text-align: center;
+    color: #c38fff;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+h4 {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p {
+    width: 100%;
+    height: 50px;
+}
+
+#controls {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#controls button {
+    margin: 15px;
+    margin-top: 15px;
+    width: 75px;
+    height: 40px;
+}
+
+#controls button.small {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    font-size: 17.5px;
+}
+
+
+#controls.playing .play-button, #controls.game-over .play-button {
+    display: none;
+}
+
+#controls:not(.playing) .pause-button, #controls:not(.playing) .resume-button {
+    display: none;
+}
+
+#controls.paused .pause-button {
+    display: none;
+}
+
+#controls:not(.paused) .resume-button {
+    display: none;
+}
+
+#controls:not(.game-over) .restart-button {
+    display: none;
+}
+
+#controls h2 {
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+#powerupBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -30px;
+}
+
+#powerupBar div {
+    display: flex;
+    border-radius: 5px;
+    background-color: #1f1f1f;
+    margin-top: 10px;
+    border: 1px solid #EA484E;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.75);
+}
+
+#powerupBar h2 {
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+}
+
+#powerupBar div span {
+    min-width: 27.5px;
+    height: 35px;
+    margin: 7.5px;
+    border: 1px solid #c38fff;
+}
+
+#powerupBar .filled {
+    background: #c38fff !important;
+}
+
+#powerupBar .full {
+    border: 1px solid #c38fff !important;
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+}
+
+#powerupBar .shake {
+    animation: shake 1s;
+    animation-iteration-count: 2;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 7.5px;
+    -webkit-box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 0px 30px 10px rgba(0, 0, 0, 0.15);
+    background-color: #1f1f1f;
+    margin: 20px 10vw;
+    position: relative;
+}
+
+div.row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+div.col {
+    flex: 1;
+    height: 100%;
+}
+
+div#help {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+
+div#help.hidden {
+    display: none;
+}
+
+div#help div {
+    display: flex;
+    justify-content: center;
+}
+
+div#help p {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+div#help p span {
+    min-width: 15px;
+    min-height: 15px;
+    display: inline-block;
+}
+
+div#help p span.food-block {
+    background-color: #c38fff;
+}
+
+div#help p span.wall-block {
+    background-color: #EA484E;
+}
+
+div#help #controlsWrapper { 
+    margin-bottom: 30px;
+    display: block;
+}
+
+div#help div.keyboard-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+div#help kbd {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px solid #121212;
+    margin: 5px;
+    background-color: #c38fff;
+    font-weight: bold;
+    color: #1f1f1f;
+    -webkit-box-shadow: 0px 2px 1px 0px rgba(157,71,255,0.87); 
+    box-shadow: 0px 2px 1px 0px rgba(157,71,255,0.87);
+}
+
+div#help kbd.wide {
+    width: 150px;
+}
+
+div#help kbd span {
+    margin-top: 12.5px;
+}
+
+div#help button {
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+div#gameOver {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+
+div#gameOver div {
+    display: flex;
+    justify-content: center;
+}
+
+#board.game-over div#gameOver {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+
+#leaderboardForm {
+    width: 350px;
+}
+
+#leaderboardForm table {
+    width: 100%;
+}
+
+#leaderboardForm tr {
+    width: 100%;
+    display: flex;
+}
+
+#leaderboardForm table th {
+    width: 50%;
+    text-align: center;
+}
+
+#leaderboardForm table td {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 50%;
+}
+
+#leaderboardForm input {
+    width: 100%;
+    height: 25px;
+    border: 1px solid #c38fff;
+    border-radius: 7.5px;
+    background-color: transparent;
+    color: white;
+    padding-left: 7.5px;
+    outline: none;
+}
+
+#leaderboardForm button {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+}
+
+
+div#leaderboard {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 100px;
+    box-sizing: border-box;
+    display: none;
+}
+
+div#leaderboard div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div#leaderboard #leaderboardWrapper {
+    overflow-y: scroll;
+    max-height: 350px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#board.display-leaderboard div#leaderboard {
+    display: flex;
+    width: 100%;
+    background-color: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+
+div#leaderboard table {
+    width: 80%;
+}
+
+div#leaderboard table th {
+    width: 25%;
+    color: #c38fff;
+    text-align: center;
+}
+
+div#leaderboard table td {
+    width: 25%;
+    color: white;
+    text-align: center;
+}
+
+div#leaderboard button {
+    width: 30%;
+    height: 40px;
+    margin-top: 25px;
+}
+
+div.col.snake {
+    background: white !important;
+    animation: wiggle 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+div.col.head {
+    background: #008E53 !important;
+}
+
+div.col.food {
+    background: #c38fff;
+    animation: food-pulse 2.5s;
+    animation-iteration-count: infinite;
+}
+
+div.col.wall {
+    background: #EA484E;
+}
+
+.shake {
+    border: 1px solid #EA484E !important;
+    animation: shake 1s;
+    animation-iteration-count: 2;
+}
+
+/* Generic shake animation to alert user of an error or something that requires attention */
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+/* Animation to make the food more visible */
+@keyframes food-pulse {
+    0% {
+        box-shadow: 0 0 0 0px rgba(195, 143, 255, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 0 17.5px rgba(195, 143, 255, 0.0);
+    }
+}
+
+/* Animation to emulate snake wiggle - Subtle effect due to tiny duration when the snake moves */ 
+@keyframes wiggle {
+    0% {
+        transform: rotate(12.5deg);
+    }
+
+    25% {
+        transform: rotate(-12.5deg);
+    }
+
+    50% {
+        transform: rotate(25deg);
+    }
+
+    75% {
+        transform: rotate(-7.5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
